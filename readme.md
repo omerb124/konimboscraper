@@ -47,3 +47,5 @@ foreach($category_archive->products as $product){
 
 ## TODOs
 * Add full website scraping function
+* Add option for using proxies & fake UA
+* Add catches for exception in top functions
