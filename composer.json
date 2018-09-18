@@ -1,0 +1,12 @@
+{
+    "name": "obachar46/konimboScraper",
+    "autoload": {
+        "psr-4" : {
+            "Konimbo\\" : "src"
+        },
+		"files" : [
+				"src/lib/simple_html_dom.php"
+		]
+
+    }
+}
