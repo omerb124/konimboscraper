@@ -1,13 +1,16 @@
 <?php
 	namespace Konimbo;
 
-	class KonimboWebsite
+	class Website
 	{
 
 		// @var String - website url
 		public $website_url;
 
-		// @var Array of Strings - list of category's archives urls
+		// @var Array of Konimbo\CategoryArchive - list of category objects data
+		public $categories;
+
+		// @var Array of Strings - list of category archive urls
 		private $_category_archives;
 
 		// @var Array - list of products
@@ -27,6 +30,7 @@
 			// Scrape category archives urls
 			$this->_category_archives = $this->_scrapeCategoryArchives();
 
+			// Scrape products from category archives
 
 
 		}
@@ -72,11 +76,21 @@
 		*/
 		private function _scrapeProducts()
 		{
+			$this->categories = [];
+
 			// Loop each category archive and scrape it's products
 			foreach($this->_category_archives as $archive_url){
 
-				// Create category object
-				$category = new CategoryArchive($archive_url);
+				try{
+					// Create category object
+					$category = new CategoryArchive($archive_url);
+
+					// Push category data to list
+					array_push($this->categories,$category);
+				} catch(\Exception $e){
+					// Cannot scrape category
+					continue;
+				}
 			}
 		}
 

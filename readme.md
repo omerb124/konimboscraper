@@ -35,6 +35,23 @@ print $product->main_image_url; // Product main image url
 print $product->tech_details; // Product tech details list
 ```
 
+### Scrape full website
+```
+$website = new Konimbo\Website("{KONIMBO_WEBSITE_URL_MAIN_PAGE}");
+
+foreach($website->categories as $category){
+	
+	print($category->title); // Category title
+	print($category->url); // Category URL
+	
+	foreach($category->products as $product){
+	
+		... execute some code on each product ...
+	}
+}
+```
+
+
 ### Scrape category archive
 ```
 $category_archive = new Konimbo\CategoryArchive("{KONIMBO_WEBSITE_CATEGORY_URL}");
@@ -44,6 +61,7 @@ foreach($category_archive->products as $product){
 	... some code to execute on each product ...
 }
 ```
+
 
 ## TODOs
 * Add full website scraping function
